@@ -95,7 +95,7 @@ export default function Home() {
             }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
-            {isSubmitted ? 'Terima Kasih' : 'IMTHIAN\n2026!'}
+            {isSubmitted ? 'Terima Kasih' : (<span>IMTIHAN III<br />TPQ DARUZZAHRAH</span>)}
           </motion.h1>
 
           {/* Profile/Thumb Icon */}
