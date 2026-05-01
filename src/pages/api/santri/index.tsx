@@ -4,7 +4,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID;
 
 type ResponseData = {
-  data: any
+  santri: any,
+  jilid: any
 }
 
 export default async function handler(
