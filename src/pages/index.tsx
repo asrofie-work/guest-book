@@ -1,6 +1,6 @@
 "use client"
 import { Geist, Geist_Mono } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Autocomplete } from "@mui/material"
 import { TextField } from "@mui/material"
 import { useRouter } from "next/router";
@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const router = useRouter()
+  const inputJilidRef = useRef(null);
   const [santri, setSantri] = useState([])
   const [name, setName] = useState('')
   const [jilidName, setJilidName] = useState('')
@@ -137,7 +137,12 @@ export default function Home() {
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Santri" />}
                 value={name}
-                onChange={(event, value) => setName(value as string)}
+                onChange={(event, value) => {
+                  setName(value as string)
+                  setTimeout(() => {
+                    inputJilidRef.current?.focus();
+                  }, 100);
+                }}
               />
             </div>
             <div className="flex items-center border-b border-gray-300 py-2 focus-within:border-[#ff758c] transition-colors">
@@ -147,9 +152,11 @@ export default function Home() {
                 freeSolo
                 options={jilid}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Jilid" />}
+                renderInput={(params) => <TextField ref={inputJilidRef} {...params} label="Jilid" />}
                 value={jilidName}
-                onChange={(event, value) => setJilidName(value as string)}
+                onChange={(event, value) => {
+                  setJilidName(value as string)
+                }}
               />
             </div>
           </motion.div>
@@ -169,7 +176,7 @@ export default function Home() {
         </div>
 
         {/* Home Button Overlay */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {isSubmitted && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -186,7 +193,7 @@ export default function Home() {
               </button>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
     </div>
   )
