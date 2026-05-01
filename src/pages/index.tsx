@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
-  const inputJilidRef = useRef(null);
+  const inputJilidRef = useRef<HTMLInputElement>(null);
   const [santri, setSantri] = useState([])
   const [name, setName] = useState('')
   const [jilidName, setJilidName] = useState('')
@@ -140,7 +140,9 @@ export default function Home() {
                 onChange={(event, value) => {
                   setName(value as string)
                   setTimeout(() => {
-                    inputJilidRef.current?.focus();
+                    if (inputJilidRef && inputJilidRef.current) {
+                      inputJilidRef.current.focus();
+                    }
                   }, 100);
                 }}
               />
